@@ -189,20 +189,15 @@ def derivative(arr):
 	arr2[0] = arr[0]
 	return arr2
 
+def difference(arr):
+	arr2 = [0] * len(arr)
+	for i in range(1, len(arr)):
+		arr2[i] = arr[i] - arr[i-1]
+	arr2[0] = arr[0]
+	return arr2
+
 def analyzeGoodPut():
 	global goodputDict04, goodputDict15
-	# colors = ['c', 'm', 'y', 'g', 'b', 'r']
-	# for key in goodputDict04.keys():
-	# 	plt.plot(range(1001), goodputDict04[key], label=key+'04', c = colors[-1])
-	# 	colors.pop()
-	# 	plt.plot(range(1001), goodputDict15[key], label=key+'15', c = colors[-1])
-	# 	colors.pop()
-
-	# plt.xlabel("time") 
-	# plt.ylabel("Goodput") 
-	# plt.title("Goodput per second") 
-	# plt.legend() 
-	# plt.show() 
 
 	colors = ['c', 'm', 'y', 'g', 'b', 'r']
 	for key in goodputDict04.keys():
@@ -217,27 +212,27 @@ def analyzeGoodPut():
 	plt.legend() 
 	plt.show() 
 
-
-def analyzeRtt():
-	global rttDict04, rttDict15
 	# colors = ['c', 'm', 'y', 'g', 'b', 'r']
-	# for key in rttDict04.keys():
-	# 	plt.plot(range(1001), rttDict04[key], label=key+'04', c = colors[-1])
+	# for key in goodputDict04.keys():
+	# 	plt.plot(range(1001),difference(goodputDict04[key]), label=key+'04', c = colors[-1])
 	# 	colors.pop()
-	# 	plt.plot(range(1001), rttDict15[key], label=key+'15', c = colors[-1])
+	# 	plt.plot(range(1001), difference(goodputDict15[key]), label=key+'15', c = colors[-1])
 	# 	colors.pop()
 
 	# plt.xlabel("time") 
-	# plt.ylabel("RTT") 
-	# plt.title("RTT per second") 
+	# plt.ylabel("Goodput rate") 
+	# plt.title("Goodput rate per second") 
 	# plt.legend() 
 	# plt.show() 
 
+
+def analyzeRtt():
+	global rttDict04, rttDict15
 	colors = ['c', 'm', 'y', 'g', 'b', 'r']
 	for key in rttDict04.keys():
-		plt.plot(range(1001),derivative(rttDict04[key]), label=key+'04', c = colors[-1])
+		plt.plot(range(1001), rttDict04[key], label=key+'04', c = colors[-1])
 		colors.pop()
-		plt.plot(range(1001), derivative(rttDict15[key]), label=key+'15', c = colors[-1])
+		plt.plot(range(1001), rttDict15[key], label=key+'15', c = colors[-1])
 		colors.pop()
 
 	plt.xlabel("time") 
@@ -248,19 +243,6 @@ def analyzeRtt():
 
 def analyzeLost():
 	global lostDict04, lostDict15
-	# colors = ['c', 'm', 'y', 'g', 'b', 'r']
-	# for key in lostDict04.keys():
-	# 	plt.plot(range(1001), lostDict04[key], label=key+'04', c = colors[-1])
-	# 	colors.pop()
-	# 	plt.plot(range(1001), lostDict15[key], label=key+'15', c = colors[-1])
-	# 	colors.pop()
-
-	# plt.xlabel("time") 
-	# plt.ylabel("Packet loss") 
-	# plt.title("Packet loss per second") 
-	# plt.legend() 
-	# plt.show() 
-
 	colors = ['c', 'm', 'y', 'g', 'b', 'r']
 	for key in lostDict04.keys():
 		plt.plot(range(1001),derivative(lostDict04[key]), label=key+'04', c = colors[-1])
@@ -274,6 +256,18 @@ def analyzeLost():
 	plt.legend() 
 	plt.show() 
 
+	# colors = ['c', 'm', 'y', 'g', 'b', 'r']
+	# for key in lostDict04.keys():
+	# 	plt.plot(range(1001),difference(lostDict04[key]), label=key+'04', c = colors[-1])
+	# 	colors.pop()
+	# 	plt.plot(range(1001), difference(lostDict15[key]), label=key+'15', c = colors[-1])
+	# 	colors.pop()
+
+	# plt.xlabel("time") 
+	# plt.ylabel("Packet loss rate") 
+	# plt.title("Packet loss rate per second") 
+	# plt.legend() 
+	# plt.show() 
 
 
 run()
